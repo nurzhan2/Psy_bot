@@ -1,0 +1,21 @@
+# Секреты — никогда не коммитим
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Данные проекта (генерируются автоматически)
+data/*.db
+data/index/
+
+# Аудио пользователей (не должно попадать в git вообще)
+personal_materials/audio_raw/*.mp3
+personal_materials/audio_raw/*.ogg
+personal_materials/audio_raw/*.wav
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,9 @@
+aiogram==3.13.1
+openai==1.51.0
+faiss-cpu==1.8.0.post1
+python-dotenv==1.0.1
+tiktoken==0.8.0
+pypdf==5.0.1
+numpy==1.26.4
+SQLAlchemy==2.0.35
+telethon==1.36.0
