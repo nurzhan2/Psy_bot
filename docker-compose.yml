@@ -1,0 +1,24 @@
+services:
+  bot:
+    build: .
+    container_name: psy_bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      # Вебхук ЮKassa. На сервере наружу обычно смотрит nginx с TLS,
+      # а контейнер слушает локально — тогда замените на "127.0.0.1:8080:8080".
+      - "8080:8080"
+    volumes:
+      # БД и векторные индексы переживают перезапуск/пересборку контейнера
+      - ./data:/app/data
+      # Личные материалы Екатерины (если хотите править без пересборки образа)
+      - ./personal_materials:/app/personal_materials
+      # Логи доступны на хосте
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 8080), timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s

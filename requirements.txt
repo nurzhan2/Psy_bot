@@ -1,0 +1,17 @@
+aiogram==3.13.1
+openai==1.51.0
+python-dotenv==1.0.1
+tiktoken==0.8.0
+pypdf==5.0.1
+numpy==1.26.4
+SQLAlchemy==2.0.35
+telethon==1.36.0
+faiss-cpu==1.8.0.post1
+aiohttp>=3.9
+
+# Блок 1: платежи (ЮKassa)
+yookassa>=3.0.0
+# Блок 2: шифрование переписки
+cryptography>=42.0
+# Блок 3: алерты о падениях (опционально)
+# sentry-sdk>=2.0

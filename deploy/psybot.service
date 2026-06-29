@@ -1,0 +1,30 @@
+# Альтернатива Docker: запуск на VPS через systemd (автозапуск + рестарт при падении).
+#
+# Установка:
+#   sudo cp deploy/psybot.service /etc/systemd/system/psybot.service
+#   # отредактируйте пути и пользователя под свой сервер
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now psybot
+#   sudo systemctl status psybot
+#   journalctl -u psybot -f          # смотреть логи в реальном времени
+
+[Unit]
+Description=Psy Telegram Bot (RAG + GPT)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=psybot
+WorkingDirectory=/opt/psy_bot
+# Используйте venv проекта:
+ExecStart=/opt/psy_bot/venv/bin/python /opt/psy_bot/main.py
+EnvironmentFile=/opt/psy_bot/.env
+Restart=always
+RestartSec=5
+# Минимальная изоляция
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
